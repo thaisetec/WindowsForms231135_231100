@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsForms231135_231100.Models
 {
-    internal class Produto
+    public class Produto
     {
     }
 }

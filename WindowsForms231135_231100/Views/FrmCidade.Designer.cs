@@ -76,6 +76,7 @@
             this.btnIncluir.TabIndex = 3;
             this.btnIncluir.Text = "Incluir";
             this.btnIncluir.UseVisualStyleBackColor = true;
+            this.btnIncluir.Click += new System.EventHandler(this.btnIncluir_Click);
             // 
             // btnAlterar
             // 
@@ -142,6 +143,7 @@
             this.DgvCidades.ReadOnly = true;
             this.DgvCidades.Size = new System.Drawing.Size(617, 150);
             this.DgvCidades.TabIndex = 10;
+            this.DgvCidades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvCidades_CellContentClick);
             // 
             // lblName
             // 
@@ -201,6 +203,7 @@
             this.Controls.Add(this.txtID);
             this.Name = "FrmCidade";
             this.Text = "FrmCidade";
+            this.Load += new System.EventHandler(this.FrmCidade_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvCidades)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

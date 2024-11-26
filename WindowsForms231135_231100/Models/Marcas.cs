@@ -19,7 +19,7 @@ namespace WindowsForms231135_231100.Models
         {
             try
             {
-                Banco.AbrirConexao();
+                Banco.Conectar();
                 Banco.Comando = new MySqlCommand("INSERT INTO marcas (marca) VALUES (@marca)", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@marca", marca);
                 Banco.Comando.ExecuteNonQuery();
@@ -35,7 +35,7 @@ namespace WindowsForms231135_231100.Models
         {
             try
             {
-                Banco.AbrirConexao();
+                Banco.Conectar();
                 Banco.Comando = new MySqlCommand("Update marcas set marca =@marca where id =@id", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@marca", marca);
                 Banco.Comando.Parameters.AddWithValue("@id", id);
@@ -55,7 +55,7 @@ namespace WindowsForms231135_231100.Models
         {
             try
             {
-                Banco.AbrirConexao();
+                Banco.Conectar();
                 Banco.Comando = new MySqlCommand("delete from marcas where id=@id", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@id", id);
                 Banco.Comando.ExecuteNonQuery();
@@ -74,7 +74,7 @@ namespace WindowsForms231135_231100.Models
         {
             try
             {
-                Banco.AbrirConexao();
+                Banco.Conectar();
                 Banco.Comando = new MySqlCommand("SELECT * FROM marcas where nome like @marca" +
                     "order by nome", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@marca", marca + "%");

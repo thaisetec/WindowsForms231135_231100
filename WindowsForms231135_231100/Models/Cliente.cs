@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace WindowsForms231135_231100.Models
 {
@@ -24,8 +25,8 @@ namespace WindowsForms231135_231100.Models
         {
             try
             {
-                Banco.Conectar.Open();
-                Banco.Comando = new MySqlCommand("INSERT INTO clientes (nome, idCidade, nascimento, renda, cpf, foto, venda) (@nome, @idCidade, @nascimento, @renda, @cpf, @foto, @venda)", Banco.Conectar);
+                Banco.Conectar();
+                Banco.Comando = new MySqlCommand("INSERT INTO clientes (nome, idCidade, nascimento, renda, cpf, foto, venda) (@nome, @idCidade, @nascimento, @renda, @cpf, @foto, @venda)", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", nome);
                 Banco.Comando.Parameters.AddWithValue("@idCidade", idCidade);
                 Banco.Comando.Parameters.AddWithValue("@nascimento", nascimento);
@@ -34,7 +35,7 @@ namespace WindowsForms231135_231100.Models
                 Banco.Comando.Parameters.AddWithValue("@foto", foto);
                 Banco.Comando.Parameters.AddWithValue("@venda", venda);
                 Banco.Comando.ExecuteNonQuery();
-                Banco.Conectar.Close();
+                Banco.FecharConexao();
             }
             catch (Exception e)
             {
@@ -46,8 +47,8 @@ namespace WindowsForms231135_231100.Models
         {
             try
             {
-                Banco.Conectar.Open();
-                Banco.Comando = new MySqlCommand("UPDATE clientes SET nome = @nome, idCidade = @idCidade, nascimento = @nascimento, renda = @renda, cpf = @cpf, foto = @foto, venda = @venda where id = @id", Banco.Conectar);
+                Banco.Conectar();
+                Banco.Comando = new MySqlCommand("UPDATE clientes SET nome = @nome, idCidade = @idCidade, nascimento = @nascimento, renda = @renda, cpf = @cpf, foto = @foto, venda = @venda where id = @id", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", nome);
                 Banco.Comando.Parameters.AddWithValue("@idCidade", idCidade);
                 Banco.Comando.Parameters.AddWithValue("@nascimento", nascimento);
@@ -56,7 +57,7 @@ namespace WindowsForms231135_231100.Models
                 Banco.Comando.Parameters.AddWithValue("@foto", foto);
                 Banco.Comando.Parameters.AddWithValue("@venda", venda);
                 Banco.Comando.ExecuteNonQuery();
-                Banco.Conectar.Close();
+                Banco.FecharConexao();
             }
             catch (Exception e)
             {
@@ -66,23 +67,23 @@ namespace WindowsForms231135_231100.Models
 
         public void Excluir()
         {
-            Banco.Conectar.Open();
-            Banco.Comando = new MySqlCommand("DELETE FROM clientes WHERE id = @id", Banco.Conectar);
+            Banco.Conectar();
+            Banco.Comando = new MySqlCommand("DELETE FROM clientes WHERE id = @id", Banco.Conexao);
             Banco.Comando.Parameters.AddWithValue("@id", id);
             Banco.Comando.ExecuteNonQuery();
-            Banco.Conectar.Close();
+            Banco.FecharConexao();
         }
 
         public DataTable Consultar()
         {
             try
             {
-                Banco.Comando = new MySqlCommand("SELECT cl.*, ci.nome cidade, ci.uf FROM clientes cl INNER JOIN cidades ci on (ci.id = cl.idCidade) where cl.nome like ?nome order by cl.nome", Banco.Conectar);
+                Banco.Comando = new MySqlCommand("SELECT cl.*, ci.nome cidade, ci.uf FROM clientes cl INNER JOIN cidades ci on (ci.id = cl.idCidade) where cl.nome like ?nome order by cl.nome", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", nome + "%");
-                Banco.Adaptar = new MySqlDataAdapter(Banco.Comando);
-                Banco.DataTabela = new DataTable();
-                Banco.Adaptar.Fill(Banco.DataTabela);
-                return Banco.DataTabela;
+                Banco.Adaptador = new MySqlDataAdapter(Banco.Comando);
+                Banco.DatTabela = new DataTable();
+                Banco.Adaptador.Fill(Banco.DatTabela);
+                return Banco.DatTabela;
             }
             catch (Exception e)
             {

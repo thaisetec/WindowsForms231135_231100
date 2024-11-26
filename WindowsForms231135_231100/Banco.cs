@@ -16,7 +16,7 @@ namespace WindowsForms231135_231100
         public static DataTable DatTabela;
 
 
-        public static void AbrirConexao()
+        public static void Conectar()
         {
             try
             {
@@ -47,10 +47,10 @@ namespace WindowsForms231135_231100
         {
             try
             {
-                AbrirConexao();
+                Conectar();
                 Comando = new MySqlCommand("CREATE DATABASE IF NOT EXISTS vendas; USE vendas", Conexao);
                 Comando.ExecuteNonQuery();
-                Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS Cidades; USE vendas" +
+                Comando = new MySqlCommand("CREATE TABLE IF NOT EXISTS Cidades" +
                     "(id integer auto_increment primary key," +
                     "nome char(40)," +
                     "uf char(02))", Conexao);

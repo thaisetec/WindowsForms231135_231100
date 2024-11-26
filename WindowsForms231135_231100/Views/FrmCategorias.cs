@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsForms231135_231100.Views
 {
-    public partial class FrmConsultaVendaCat : Form
+    public partial class FrmCategorias : Form
     {
-        public FrmConsultaVendaCat()
+        public FrmCategorias()
         {
             InitializeComponent();
         }

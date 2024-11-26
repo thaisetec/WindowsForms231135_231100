@@ -1,6 +1,6 @@
 ﻿namespace WindowsForms231135_231100.Views
 {
-    partial class FrmCaixa
+    partial class FrmCategorias
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FrmCaixa";
+            this.Text = "FrmCategorias";
         }
 
         #endregion

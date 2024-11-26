@@ -17,7 +17,7 @@ namespace WindowsForms231135_231100.Models
         {
             try
             {
-                Banco.AbrirConexao();
+                Banco.Conectar();
                 Banco.Comando = new MySqlCommand("INSERT INTO cidades (nome, uf) VALUES (@nome, @uf)", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", nome);
                 Banco.Comando.Parameters.AddWithValue("@uf", uf);
@@ -34,7 +34,7 @@ namespace WindowsForms231135_231100.Models
         {
             try
             {
-                Banco.AbrirConexao();
+                Banco.Conectar();
                 Banco.Comando = new MySqlCommand("Update cidades set nome =@nome,uf =@uf where id =@id", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", nome);
                 Banco.Comando.Parameters.AddWithValue("@uf", uf);
@@ -55,7 +55,7 @@ namespace WindowsForms231135_231100.Models
         {
             try
             {
-                Banco.AbrirConexao();
+                Banco.Conectar();
                 Banco.Comando = new MySqlCommand("delete from cidades where id=@id", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@id", id);
                 Banco.Comando.ExecuteNonQuery();
@@ -74,7 +74,7 @@ namespace WindowsForms231135_231100.Models
         {
             try
             {
-                Banco.AbrirConexao();
+                Banco.Conectar();
                 Banco.Comando = new MySqlCommand("SELECT * FROM cidades where nome like @nome" +
                     "order by nome", Banco.Conexao);
                 Banco.Comando.Parameters.AddWithValue("@nome", nome + "%");
